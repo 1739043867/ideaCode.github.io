@@ -239,6 +239,241 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/Lucene7入门demo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xzw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/18/Lucene7入门demo/" itemprop="url">Lucene7入门demo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T14:13:16+08:00">
+                2018-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>                                    Lucene7入门demo
+
+加入依赖
+</code></pre><!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+    &lt;artifactId&gt;lucene-core&lt;/artifactId&gt;
+    &lt;version&gt;7.3.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+    &lt;artifactId&gt;lucene-queryparser&lt;/artifactId&gt;
+    &lt;version&gt;7.3.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+    &lt;artifactId&gt;lucene-analyzers-common&lt;/artifactId&gt;
+    &lt;version&gt;7.3.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>创建索引代码实例：</p>
+<p> @Test<br>    public void testCreateIndex() throws IOException {<br>        //指定索引库的存放位置Directory对象<br>        Directory directory = FSDirectory.open(Paths.get(“F:\file\test”));<br>        //指定一个标准分析器，对文档内容进行分析<br>        Analyzer analyzer =new StandardAnalyzer();<br>        //创建indexwriterCofig对象<br>        //参数：分析器对象<br>        IndexWriterConfig config =new IndexWriterConfig(analyzer);<br>        //创建一个indexwriter对象<br>        IndexWriter writer = new IndexWriter(directory,config);<br>        //原始文档的路径<br>        File  file = new File(“F:\file\searchsource”);<br>        File[] files=file.listFiles();<br>        for (File file1:files){<br>            //创建document对象<br>            Document document=new Document();<br>            //创建field对象，将field添加到document对象中</p>
+<pre><code>        //文件名称
+        String fileName =file1.getName();
+        //创建文件名域
+        //第一个参数：域的名称
+        //第二个参数：域的内容
+        //第三个参数：是否存储
+        Field fileNameField = new TextField(&quot;fileName&quot;,fileName, Field.Store.YES);
+        //文件路径
+        String filePath = file1.getPath();
+        //文件路径域（不分析、不索引、只存储）
+        Field filePathField=new StoredField(&quot;filePath&quot;,filePath);
+        //文件内容
+        String fileContent=FileUtils.readFileToString(file1);
+        Field fileContentField=new TextField(&quot;fileContent&quot;,fileContent, Field.Store.YES);
+        document.add(fileContentField);
+        document.add(fileNameField);
+        document.add(filePathField);
+        //使用indexwriter对象将document对象写入索引库，此过程进行索引创建。并将索引和document对象写入索引库。
+        writer.addDocument(document);
+    }
+    //关闭IndexWriter对象。
+    writer.close();
+}
+</code></pre><ol start="2">
+<li><p>查询索引<br>@Test<br> public void testMatchAllDocsQuery() throws IOException {</p>
+<pre><code>//创建一个Directory对象，指定索引库存放的路径
+Directory directory=FSDirectory.open(Paths.get(&quot;F:\\file\\test&quot;));
+//创建IndexReader对象，需要指定Directory对象
+IndexReader reader = DirectoryReader.open(directory);
+//创建Indexsearcher对象，需要指定IndexReader对象
+IndexSearcher searcher=new IndexSearcher(reader);
+//创建查询条件
+//使用MatchAllDocsQuery查询索引目录中的所有文档
+Query query =new MatchAllDocsQuery();
+//执行查询
+//第一个参数是查询对象，第二个参数是查询结果返回的最大值
+TopDocs topDocs =searcher.search(query,10);
+System.out.println(&quot;查询结果总数&quot;+topDocs.totalHits);
+//遍历查询结果
+//topDocs.scoreDocs存储了document对象的id
+//ScoreDoc[] scoreDocs = topDocs.scoreDocs;
+for (ScoreDoc scoreDoc:topDocs.scoreDocs){
+    //scoreDoc.doc属性就是document对象的id
+    //int doc = scoreDoc.doc;
+    //根据document的id找到document对象
+    Document document =searcher.doc(scoreDoc.doc);
+    //文件名称
+    System.out.println(document.get(&quot;fileName&quot;));
+    //文件内容
+    System.out.println(document.get(&quot;fileContent&quot;));
+    //文件路径
+    System.out.println(document.get(&quot;filePath&quot;));
+    System.out.println(&quot;----------------------------------&quot;);
+}
+//关闭indexreader对象
+reader.close();
+</code></pre><p> }<br>3:精确查询</p>
+<p> @Test<br> public void testSearchIndex() throws IOException{</p>
+<pre><code>//创建一个Directory对象，指定索引库存放的路径
+Directory directory=FSDirectory.open(Paths.get(&quot;F:\\file\\test&quot;));
+//创建IndexReader对象，需要指定Directory对象
+IndexReader reader = DirectoryReader.open(directory);
+//创建Indexsearcher对象，需要指定IndexReader对象
+IndexSearcher searcher=new IndexSearcher(reader);
+//创建一个TermQuery（精准查询）对象，指定查询的域与查询的关键词
+//创建查询
+Query query=new TermQuery(new Term(&quot;fileContent&quot;,&quot;bigdata&quot;));
+//执行查询
+//第一个参数是查询对象，第二个参数是查询结果返回的最大值
+TopDocs topDocs =searcher.search(query,10);
+//查询结果的总条数
+System.out.println(&quot;查询结果的总条数：&quot;+ topDocs.totalHits);
+//遍历查询结果
+//topDocs.scoreDocs存储了document对象的id
+//ScoreDoc[] scoreDocs = topDocs.scoreDocs;
+for (ScoreDoc scoreDoc:topDocs.scoreDocs){
+    //scoreDoc.doc属性就是document对象的id
+    //int doc = scoreDoc.doc;
+    //根据document的id找到document对象
+    Document document =searcher.doc(scoreDoc.doc);
+    //文件名称
+    System.out.println(document.get(&quot;fileName&quot;));
+    //文件内容
+    System.out.println(document.get(&quot;fileContent&quot;));
+    //文件路径
+    System.out.println(document.get(&quot;filePath&quot;));
+}
+//关闭indexreader对象
+reader.close();
+</code></pre><p> }</p>
+</li>
+</ol>
+<p>碰到问题：doc文档乱码无法解决</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/rest理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -437,7 +672,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
