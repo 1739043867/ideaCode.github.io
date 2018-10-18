@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=updat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rest理解">
+<meta property="og:url" content="http://yoursite.com/2018/10/18/rest理解/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=updat">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-18T02:04:37.123Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="rest理解">
+<meta name="twitter:description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=updat">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/18/rest理解/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title>rest理解 | Hexo</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -256,9 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/10/18/rest理解/" itemprop="url">rest理解</a></h1>
+          <h1 class="post-title" itemprop="name headline">rest理解</h1>
         
 
         <div class="post-meta">
@@ -308,9 +309,7 @@
       
 
       
-        
-          
-            <p>1.传统下的API接口<br>　　http是目前在互联网上使用最多的协议，没有之一。<br>　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？<br>　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　<br>　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=update　<br>　　 这种做法让Roy Fielding很暴燥，他觉得这个世界不该这样的，所有的人都在误解而且在严重错误的误解Http的设计初衷，好比是发明了火药却只用它来做烟花爆竹。<br>　　 那么正确的使用方式是什么呢？如果你要看Rest各种特性，你恐怕真的很难理解Rest，但是如果你看错误的使用http的人倒底儿了哪些错，什么是Rest就特别容易理解了。　<br>　　<br>七宗罪的第一条，混乱。　　</p>
+        <p>1.传统下的API接口<br>　　http是目前在互联网上使用最多的协议，没有之一。<br>　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？<br>　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　<br>　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=update　<br>　　 这种做法让Roy Fielding很暴燥，他觉得这个世界不该这样的，所有的人都在误解而且在严重错误的误解Http的设计初衷，好比是发明了火药却只用它来做烟花爆竹。<br>　　 那么正确的使用方式是什么呢？如果你要看Rest各种特性，你恐怕真的很难理解Rest，但是如果你看错误的使用http的人倒底儿了哪些错，什么是Rest就特别容易理解了。　<br>　　<br>七宗罪的第一条，混乱。　　</p>
 <p>　　 一万个人心里有一万个Url的命名规则，Url是统一资源定位符，重点是资源。而很多人却把它当成了万金油，每一个独立的虚拟的网页都可以随意使用，各种操作都能够迭加。这是混乱的来源之一。<br>比如：</p>
 <p>1：<a href="https://localhost:8080/myweb/getUserById?id=1" target="_blank" rel="noopener">https://localhost:8080/myweb/getUserById?id=1</a><br>2：<a href="https://localhost:8080/myweb/user/getById?id=1" target="_blank" rel="noopener">https://localhost:8080/myweb/user/getById?id=1</a><br>3：<a href="https://localhost:8080/myweb/x/y?id=1" target="_blank" rel="noopener">https://localhost:8080/myweb/x/y?id=1</a></p>
 <p>第二条，贪婪。</p>
@@ -357,8 +356,6 @@
 <p>参考：<br><a href="https://www.zhihu.com/question/28557115" target="_blank" rel="noopener">https://www.zhihu.com/question/28557115</a> </p>
 <h2 id="https-blog-igevin-info-posts-restful-architecture-in-general"><a href="#https-blog-igevin-info-posts-restful-architecture-in-general" class="headerlink" title="https://blog.igevin.info/posts/restful-architecture-in-general/"></a><a href="https://blog.igevin.info/posts/restful-architecture-in-general/" target="_blank" rel="noopener">https://blog.igevin.info/posts/restful-architecture-in-general/</a></h2><p>转：<a href="https://blog.csdn.net/qq_21383435/article/details/80032375" target="_blank" rel="noopener">https://blog.csdn.net/qq_21383435/article/details/80032375</a> </p>
 
-          
-        
       
     </div>
     
@@ -375,12 +372,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -390,10 +387,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -401,6 +399,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -421,8 +423,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -464,6 +475,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#https-blog-igevin-info-posts-restful-architecture-in-general"><span class="nav-number">1.</span> <span class="nav-text">https://blog.igevin.info/posts/restful-architecture-in-general/</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -606,6 +633,10 @@
 
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
