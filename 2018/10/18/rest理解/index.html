@@ -86,13 +86,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=updat">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/1739043867/new/blob/master/img/rest1.png">
-<meta property="og:image" content="https://github.com/1739043867/new/blob/master/img/rest2.png">
-<meta property="og:updated_time" content="2018-10-18T03:51:25.850Z">
+<meta property="og:image" content="https://github.com/1739043867/new/raw/master/img/rest1.png">
+<meta property="og:image" content="https://github.com/1739043867/new/raw/master/img/rest2.png">
+<meta property="og:updated_time" content="2018-10-18T03:54:50.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rest理解">
 <meta name="twitter:description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=updat">
-<meta name="twitter:image" content="https://github.com/1739043867/new/blob/master/img/rest1.png">
+<meta name="twitter:image" content="https://github.com/1739043867/new/raw/master/img/rest1.png">
 
 
 
@@ -345,9 +345,9 @@
 <p>Authorization 认证报头<br>Cache-Control 缓存报头<br>Cnotent-Type  消息体类型报头<br>……</p>
 <p>REST 系统的特征<br>客户-服务器（Client-Server），提供服务的服务器和使用服务的客户需要被隔离对待。<br>无状态（Stateless），来自客户的每一个请求必须包含服务器处理该请求所需的所有信息。换句话说，服务器端不能存储来自某个客户的某个请求中的信息，并在该客户的其他请求中使用。<br>可缓存（Cachable），服务器必须让客户知道请求是否可以被缓存。（Ross：更详细解释请参考 理解本真的REST架构风格 以及 StackOverflow 的这个问题 中对缓存的解释。）<br>分层系统（Layered System），服务器和客户之间的通信必须被这样标准化：允许服务器和客户之间的中间层（Ross：代理，网关等）可以代替服务器对客户的请求进行回应，而且这些对客户来说不需要特别支持。<br>统一接口（Uniform Interface），客户和服务器之间通信的方法必须是统一化的。（Ross：GET,POST,PUT.DELETE, etc）<br>支持按需代码（Code-On-Demand，可选），服务器可以提供一些代码或者脚本（Ross：Javascrpt，flash，etc）并在客户的运行环境中执行。这条准则是这些准则中唯一不必必须满足的一条。（Ross：比如客户可以在客户端下载脚本生成密码访问服务器。）<br>详细解释</p>
 <p>无状态（Stateless）</p>
-<p>　　 所谓无状态的，即所有的资源，都可以通过URI定位，而且这个定位与其他资源无关，也不会因为其他资源的变化而改变。有状态和无状态的区别，举个简单的例子说明一下。如查询员工的工资，如果查询工资是需要登录系统，进入查询工资的页面，执行相关操作后，获取工资的多少，则这种情况是有状态的，因为查询工资的每一步操作都依赖于前一步操作，只要前置操作不成功，后续操作就无法执行；如果输入一个url即可得到指定员工的工资，则这种情况是无状态的，因为获取工资不依赖于其他资源或状态，且这种情况下，员工工资是一个资源，由一个url与之对应，可以通过HTTP中的GET方法得到资源，这是典型的RESTful风格。<br><img src="https://github.com/1739043867/new/blob/master/img/rest1.png" alt="image">
+<p>　　 所谓无状态的，即所有的资源，都可以通过URI定位，而且这个定位与其他资源无关，也不会因为其他资源的变化而改变。有状态和无状态的区别，举个简单的例子说明一下。如查询员工的工资，如果查询工资是需要登录系统，进入查询工资的页面，执行相关操作后，获取工资的多少，则这种情况是有状态的，因为查询工资的每一步操作都依赖于前一步操作，只要前置操作不成功，后续操作就无法执行；如果输入一个url即可得到指定员工的工资，则这种情况是无状态的，因为获取工资不依赖于其他资源或状态，且这种情况下，员工工资是一个资源，由一个url与之对应，可以通过HTTP中的GET方法得到资源，这是典型的RESTful风格。<br><img src="https://github.com/1739043867/new/raw/master/img/rest1.png" alt="image">
 　</p>
-<p><img src="https://github.com/1739043867/new/blob/master/img/rest2.png" alt="image">　</p>
+<p><img src="https://github.com/1739043867/new/raw/master/img/rest2.png" alt="image">　</p>
 <p>统一接口（Uniform Interface）</p>
 <p>　　RESTful架构风格规定，数据的元操作，即CRUD(create, read, update和delete,即数据的增删查改)操作，分别对应于HTTP方法：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源，这样就统一了数据操作的接口，仅通过HTTP方法，就可以完成对数据的所有增删查改工作。</p>
 <p>即：</p>
