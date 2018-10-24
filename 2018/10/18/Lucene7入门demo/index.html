@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Lucene7入门demo  Lucene是apache软件基金会4 jakarta项目组的一个子项目，是一个开放源代码的全文检索引擎工具包  &amp;lt;!--more--&amp;gt; ， 但它不是一个完整的全文检索引擎，而是一个全文检索引擎的架构，提供了完整的查询引擎和索引引擎， 部分文本分析引擎（英文与德文两种西方语">
+<meta name="description" content="Lucene7入门demo    加入依赖                    org.apache.lucene            lucene-core            7.3.1                                    org.apache.lucene            lucene-queryparser            7.3.1">
 <meta name="keywords" content="lucene">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lucene7入门demo">
 <meta property="og:url" content="http://ideacode.top/2018/10/18/Lucene7入门demo/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Lucene7入门demo  Lucene是apache软件基金会4 jakarta项目组的一个子项目，是一个开放源代码的全文检索引擎工具包  &amp;lt;!--more--&amp;gt; ， 但它不是一个完整的全文检索引擎，而是一个全文检索引擎的架构，提供了完整的查询引擎和索引引擎， 部分文本分析引擎（英文与德文两种西方语">
+<meta property="og:description" content="Lucene7入门demo    加入依赖                    org.apache.lucene            lucene-core            7.3.1                                    org.apache.lucene            lucene-queryparser            7.3.1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-24T03:30:04.688Z">
+<meta property="og:updated_time" content="2018-10-24T03:31:51.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lucene7入门demo">
-<meta name="twitter:description" content="Lucene7入门demo  Lucene是apache软件基金会4 jakarta项目组的一个子项目，是一个开放源代码的全文检索引擎工具包  &amp;lt;!--more--&amp;gt; ， 但它不是一个完整的全文检索引擎，而是一个全文检索引擎的架构，提供了完整的查询引擎和索引引擎， 部分文本分析引擎（英文与德文两种西方语">
+<meta name="twitter:description" content="Lucene7入门demo    加入依赖                    org.apache.lucene            lucene-core            7.3.1                                    org.apache.lucene            lucene-queryparser            7.3.1">
 
 
 
@@ -354,20 +354,9 @@
       
 
       
-        <pre><code>                                          Lucene7入门demo
-
-Lucene是apache软件基金会4 jakarta项目组的一个子项目，是一个开放源代码的全文检索引擎工具包  &lt;!--more--&gt; ，
-但它不是一个完整的全文检索引擎，而是一个全文检索引擎的架构，提供了完整的查询引擎和索引引擎，
-部分文本分析引擎（英文与德文两种西方语言）。Lucene的目的是为软件开发人员提供一个简单易用的工具包，
-以方便的在目标系统中实现全文检索的功能，或者是以此为基础建立起完整的全文检索引擎。Lucene是一套用
-于全文检索和搜寻的开源程式库，由Apache软件基金会支持和提供。Lucene提供了一个简单却强大的应用程式
-接口，能够做全文索引和搜寻。在Java开发环境里Lucene是一个成熟的免费开源工具。就其本身而言，Lucene
-是当前以及最近几年最受欢迎的免费Java信息检索程序库。人们经常提到信息检索程序库，虽然与搜索引擎有
-关，但不应该将信息检索程序库与搜索引擎相混淆。
-</code></pre><p>   加入依赖<br><!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-core</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-queryparser</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-analyzers-common</artifactid><br>            <version>7.3.1</version><br>        </dependency></p>
-<pre><code>1:创建索引代码实例：
-
-@Test
+        <pre><code>Lucene7入门demo
+</code></pre><p>   加入依赖<br><!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-core</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-queryparser</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-analyzers-common</artifactid><br>            <version>7.3.1</version><br>        </dependency><br> <a id="more"></a><br>    1:创建索引代码实例：</p>
+<pre><code>@Test
 public void testCreateIndex() throws IOException {
     //指定索引库的存放位置Directory对象
     Directory directory = FSDirectory.open(Paths.get(&quot;F:\\file\\test&quot;));
