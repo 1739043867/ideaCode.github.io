@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=updat">
+<meta name="description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rest理解">
 <meta property="og:url" content="http://ideacode.top/2018/10/18/rest理解/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=updat">
+<meta property="og:description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/1739043867/new/raw/master/img/rest1.png">
 <meta property="og:image" content="https://github.com/1739043867/new/raw/master/img/rest2.png">
-<meta property="og:updated_time" content="2018-10-18T03:54:50.226Z">
+<meta property="og:updated_time" content="2018-10-24T03:25:25.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rest理解">
-<meta name="twitter:description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=updat">
+<meta name="twitter:description" content="1.传统下的API接口　　http是目前在互联网上使用最多的协议，没有之一。　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？　　如果说你要删除一个数据，以往的做法通常是 delete/{id}">
 <meta name="twitter:image" content="https://github.com/1739043867/new/raw/master/img/rest1.png">
 
 
@@ -334,7 +334,7 @@
       
 
       
-        <p>1.传统下的API接口<br>　　http是目前在互联网上使用最多的协议，没有之一。<br>　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？<br>　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　<br>　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=update　<br>　　 这种做法让Roy Fielding很暴燥，他觉得这个世界不该这样的，所有的人都在误解而且在严重错误的误解Http的设计初衷，好比是发明了火药却只用它来做烟花爆竹。<br>　　 那么正确的使用方式是什么呢？如果你要看Rest各种特性，你恐怕真的很难理解Rest，但是如果你看错误的使用http的人倒底儿了哪些错，什么是Rest就特别容易理解了。　<br>　　<br>七宗罪的第一条，混乱。　　</p>
+        <p>1.传统下的API接口<br>　　http是目前在互联网上使用最多的协议，没有之一。<br>　　可是http的创始人一直都觉得，在过去10几年来，所有的人都在错误的使用Http.这句话怎么说呢？<br>　　如果说你要删除一个数据，以往的做法通常是 delete/{id}　 <a id="more"></a><br>　　如果你要更新一个数据，可能是Post数据放Body，然后方法是 update/{id}， 或者是artichle/{id}?method=update　<br>　　 这种做法让Roy Fielding很暴燥，他觉得这个世界不该这样的，所有的人都在误解而且在严重错误的误解Http的设计初衷，好比是发明了火药却只用它来做烟花爆竹。<br>　　 那么正确的使用方式是什么呢？如果你要看Rest各种特性，你恐怕真的很难理解Rest，但是如果你看错误的使用http的人倒底儿了哪些错，什么是Rest就特别容易理解了。　<br>　　<br>七宗罪的第一条，混乱。　　</p>
 <p>　　 一万个人心里有一万个Url的命名规则，Url是统一资源定位符，重点是资源。而很多人却把它当成了万金油，每一个独立的虚拟的网页都可以随意使用，各种操作都能够迭加。这是混乱的来源之一。<br>比如：</p>
 <p>1：<a href="https://localhost:8080/myweb/getUserById?id=1" target="_blank" rel="noopener">https://localhost:8080/myweb/getUserById?id=1</a><br>2：<a href="https://localhost:8080/myweb/user/getById?id=1" target="_blank" rel="noopener">https://localhost:8080/myweb/user/getById?id=1</a><br>3：<a href="https://localhost:8080/myweb/x/y?id=1" target="_blank" rel="noopener">https://localhost:8080/myweb/x/y?id=1</a></p>
 <p>第二条，贪婪。</p>
@@ -497,7 +497,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ideacode.top/2018/10/18/rest%E7%90%86%E8%A7%A3/</loc>
+    
+    <lastmod>2018-10-24T03:25:25.712Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ideacode.top/2018/10/18/Lucene7%E5%85%A5%E9%97%A8demo/</loc>
+    
+    <lastmod>2018-10-24T03:25:15.249Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ideacode.top/about/index.html</loc>
     
     <lastmod>2018-10-24T03:17:54.455Z</lastmod>
@@ -26,27 +40,6 @@
     <loc>http://ideacode.top/categories/index.html</loc>
     
     <lastmod>2018-10-24T03:06:28.746Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ideacode.top/2018/10/18/baidu_verify_TTEJXHJVPw/</loc>
-    
-    <lastmod>2018-10-18T07:01:35.199Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ideacode.top/2018/10/18/Lucene7%E5%85%A5%E9%97%A8demo/</loc>
-    
-    <lastmod>2018-10-18T06:13:31.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ideacode.top/2018/10/18/rest%E7%90%86%E8%A7%A3/</loc>
-    
-    <lastmod>2018-10-18T03:54:50.226Z</lastmod>
     
   </url>
   
