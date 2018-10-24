@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Lucene7入门demo    加入依赖                    org.apache.lucene            lucene-core            7.3.1                                    org.apache.lucene            lucene-queryparser            7.3.1">
+<meta name="description" content="Lucene7入门demo     &amp;lt;!--more--&amp;gt;     加入依赖     &amp;lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --&amp;gt;     &amp;lt;dependency&amp;gt;">
 <meta name="keywords" content="lucene">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lucene7入门demo">
 <meta property="og:url" content="http://ideacode.top/2018/10/18/Lucene7入门demo/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Lucene7入门demo    加入依赖                    org.apache.lucene            lucene-core            7.3.1                                    org.apache.lucene            lucene-queryparser            7.3.1">
+<meta property="og:description" content="Lucene7入门demo     &amp;lt;!--more--&amp;gt;     加入依赖     &amp;lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --&amp;gt;     &amp;lt;dependency&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-24T03:31:51.536Z">
+<meta property="og:updated_time" content="2018-10-24T03:33:13.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lucene7入门demo">
-<meta name="twitter:description" content="Lucene7入门demo    加入依赖                    org.apache.lucene            lucene-core            7.3.1                                    org.apache.lucene            lucene-queryparser            7.3.1">
+<meta name="twitter:description" content="Lucene7入门demo     &amp;lt;!--more--&amp;gt;     加入依赖     &amp;lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --&amp;gt;     &amp;lt;dependency&amp;gt;">
 
 
 
@@ -354,9 +354,30 @@
       
 
       
-        <pre><code>Lucene7入门demo
-</code></pre><p>   加入依赖<br><!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-core</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-queryparser</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-analyzers-common</artifactid><br>            <version>7.3.1</version><br>        </dependency><br> <a id="more"></a><br>    1:创建索引代码实例：</p>
-<pre><code>@Test
+        <pre><code>                                           Lucene7入门demo
+    &lt;!--more--&gt; 
+   加入依赖
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+        &lt;artifactId&gt;lucene-core&lt;/artifactId&gt;
+        &lt;version&gt;7.3.1&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+        &lt;artifactId&gt;lucene-queryparser&lt;/artifactId&gt;
+        &lt;version&gt;7.3.1&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+        &lt;artifactId&gt;lucene-analyzers-common&lt;/artifactId&gt;
+        &lt;version&gt;7.3.1&lt;/version&gt;
+    &lt;/dependency&gt;
+1:创建索引代码实例：
+
+@Test
 public void testCreateIndex() throws IOException {
     //指定索引库的存放位置Directory对象
     Directory directory = FSDirectory.open(Paths.get(&quot;F:\\file\\test&quot;));

@@ -353,15 +353,147 @@
 
       
         
-          <pre><code>Lucene7入门demo
-</code></pre><p>   加入依赖<br><!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-core</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-queryparser</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common --><br>        <dependency><br>            <groupid>org.apache.lucene</groupid><br>            <artifactid>lucene-analyzers-common</artifactid><br>            <version>7.3.1</version><br>        </dependency><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/18/Lucene7入门demo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <pre><code>                                           Lucene7入门demo
+    &lt;!--more--&gt; 
+   加入依赖
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+        &lt;artifactId&gt;lucene-core&lt;/artifactId&gt;
+        &lt;version&gt;7.3.1&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+        &lt;artifactId&gt;lucene-queryparser&lt;/artifactId&gt;
+        &lt;version&gt;7.3.1&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+        &lt;artifactId&gt;lucene-analyzers-common&lt;/artifactId&gt;
+        &lt;version&gt;7.3.1&lt;/version&gt;
+    &lt;/dependency&gt;
+1:创建索引代码实例：
+
+@Test
+public void testCreateIndex() throws IOException {
+    //指定索引库的存放位置Directory对象
+    Directory directory = FSDirectory.open(Paths.get(&quot;F:\\file\\test&quot;));
+    //指定一个标准分析器，对文档内容进行分析
+    Analyzer analyzer =new StandardAnalyzer();
+    //创建indexwriterCofig对象
+    //参数：分析器对象
+    IndexWriterConfig config =new IndexWriterConfig(analyzer);
+    //创建一个indexwriter对象
+    IndexWriter writer = new IndexWriter(directory,config);
+    //原始文档的路径
+    File  file = new File(&quot;F:\\file\\searchsource&quot;);
+    File[] files=file.listFiles();
+    for (File file1:files){
+        //创建document对象
+        Document document=new Document();
+        //创建field对象，将field添加到document对象中
+
+        //文件名称
+        String fileName =file1.getName();
+        //创建文件名域
+        //第一个参数：域的名称
+        //第二个参数：域的内容
+        //第三个参数：是否存储
+        Field fileNameField = new TextField(&quot;fileName&quot;,fileName, Field.Store.YES);
+        //文件路径
+        String filePath = file1.getPath();
+        //文件路径域（不分析、不索引、只存储）
+        Field filePathField=new StoredField(&quot;filePath&quot;,filePath);
+        //文件内容
+        String fileContent=FileUtils.readFileToString(file1);
+        Field fileContentField=new TextField(&quot;fileContent&quot;,fileContent, Field.Store.YES);
+        document.add(fileContentField);
+        document.add(fileNameField);
+        document.add(filePathField);
+        //使用indexwriter对象将document对象写入索引库，此过程进行索引创建。并将索引和document对象写入索引库。
+        writer.addDocument(document);
+    }
+    //关闭IndexWriter对象。
+    writer.close();
+}
+
+2. 查询索引
+@Test
+public void testMatchAllDocsQuery() throws IOException {
+    //创建一个Directory对象，指定索引库存放的路径
+    Directory directory=FSDirectory.open(Paths.get(&quot;F:\\file\\test&quot;));
+    //创建IndexReader对象，需要指定Directory对象
+    IndexReader reader = DirectoryReader.open(directory);
+    //创建Indexsearcher对象，需要指定IndexReader对象
+    IndexSearcher searcher=new IndexSearcher(reader);
+    //创建查询条件
+    //使用MatchAllDocsQuery查询索引目录中的所有文档
+    Query query =new MatchAllDocsQuery();
+    //执行查询
+    //第一个参数是查询对象，第二个参数是查询结果返回的最大值
+    TopDocs topDocs =searcher.search(query,10);
+    System.out.println(&quot;查询结果总数&quot;+topDocs.totalHits);
+    //遍历查询结果
+    //topDocs.scoreDocs存储了document对象的id
+    //ScoreDoc[] scoreDocs = topDocs.scoreDocs;
+    for (ScoreDoc scoreDoc:topDocs.scoreDocs){
+        //scoreDoc.doc属性就是document对象的id
+        //int doc = scoreDoc.doc;
+        //根据document的id找到document对象
+        Document document =searcher.doc(scoreDoc.doc);
+        //文件名称
+        System.out.println(document.get(&quot;fileName&quot;));
+        //文件内容
+        System.out.println(document.get(&quot;fileContent&quot;));
+        //文件路径
+        System.out.println(document.get(&quot;filePath&quot;));
+        System.out.println(&quot;----------------------------------&quot;);
+    }
+    //关闭indexreader对象
+    reader.close();
+}
+3:精确查询
+
+@Test
+public void testSearchIndex() throws IOException{
+    //创建一个Directory对象，指定索引库存放的路径
+    Directory directory=FSDirectory.open(Paths.get(&quot;F:\\file\\test&quot;));
+    //创建IndexReader对象，需要指定Directory对象
+    IndexReader reader = DirectoryReader.open(directory);
+    //创建Indexsearcher对象，需要指定IndexReader对象
+    IndexSearcher searcher=new IndexSearcher(reader);
+    //创建一个TermQuery（精准查询）对象，指定查询的域与查询的关键词
+    //创建查询
+    Query query=new TermQuery(new Term(&quot;fileContent&quot;,&quot;bigdata&quot;));
+    //执行查询
+    //第一个参数是查询对象，第二个参数是查询结果返回的最大值
+    TopDocs topDocs =searcher.search(query,10);
+    //查询结果的总条数
+    System.out.println(&quot;查询结果的总条数：&quot;+ topDocs.totalHits);
+    //遍历查询结果
+    //topDocs.scoreDocs存储了document对象的id
+    //ScoreDoc[] scoreDocs = topDocs.scoreDocs;
+    for (ScoreDoc scoreDoc:topDocs.scoreDocs){
+        //scoreDoc.doc属性就是document对象的id
+        //int doc = scoreDoc.doc;
+        //根据document的id找到document对象
+        Document document =searcher.doc(scoreDoc.doc);
+        //文件名称
+        System.out.println(document.get(&quot;fileName&quot;));
+        //文件内容
+        System.out.println(document.get(&quot;fileContent&quot;));
+        //文件路径
+        System.out.println(document.get(&quot;filePath&quot;));
+    }
+    //关闭indexreader对象
+    reader.close();
+}
+</code></pre><p>碰到问题：doc文档乱码无法解决</p>
+
+          
         
       
     </div>
